@@ -1,0 +1,1 @@
+let ncStatusEnums = ['Voided', 'Open', 'Closed'];

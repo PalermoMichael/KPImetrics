@@ -1,0 +1,23 @@
+let ncOwnerWriterEnums = [
+'A.Helmreich(112)',
+'A.Williams',
+'A.Powell',
+'C.Free',
+'C.Key',
+'D.Lee',
+'F.Rhodes',
+'J.Maldonado',
+'K.Johnson',
+'K.Grimes',
+'M.Bassett',
+'M.Poore',
+'R.Parker',
+'R.Foster',
+'R.Patel',
+'R.Flowers',
+'S.Pfister',
+'S.Tran',
+'S.Foster',
+'TBD',
+'Multiple - See Comments'
+];

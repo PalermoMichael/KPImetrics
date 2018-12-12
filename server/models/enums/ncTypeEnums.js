@@ -1,0 +1,1 @@
+let ncTypeEnums = ['Unplanned', 'Planned'];
