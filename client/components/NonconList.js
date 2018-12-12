@@ -26,7 +26,8 @@ class NonconList extends Component {
 	}
 
 	renderNonconformances() {
-		return this.props.data.openNonconformances.map(
+		const open = this.props.data.openNonconformances
+		return open.map(
 			({ id, nc_title, nc_owner_department, nc_owner }) => {
 				return (
 					<CollapsibleItem header={nc_title} key={id}>
