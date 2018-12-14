@@ -2,12 +2,56 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const moment = require('moment');
 const formattedDate = moment(Schema.occurrencedate).format('YYYY-MM-DD');
-// let ncSiteLocationEnums = require('./enums/ncSiteLocationEnums');
-// let ncTypeEnums = require('./enums/ncTypeEnums');
-// let ncClassificationEnums = require('./enums/ncClassificationEnums');
-// let ncOwnerWriterEnums = require('./enums/ncOwnerWriterEnums');
-// let ncOwnerDepartmentEnums = require('./enums/ncOwnerDepartmentEnums');
-// let ncStatusEnums = require('./enums/ncStatusEnums');
+// const ncSiteLocationEnums = require('./enums/ncSiteLocationEnums');
+// const ncTypeEnums = require('./enums/ncTypeEnums');
+// const ncClassificationEnums = require('./enums/ncClassificationEnums');
+// const ncStatusEnums = require('./enums/ncStatusEnums');
+// const ncOwnerWriterEnums = require('./enums/ncOwnerWriterEnums');
+// const ncOwnerDepartmentEnums = require('./enums/ncOwnerDepartmentEnums');
+let ncEventTypeEnums = [
+	'Calculation Error',
+	'Client Request',
+	'Documentation Error',
+	'Equipment Failure',
+	'Instrument Failure; Dry Shipper Failure',
+	'Material Noncompliance',
+	'Material Staging',
+	'Material Staging Failure',
+	'Process Error',
+	'QC Testing Failure',
+	'Sampling Error',
+	'SCAR',
+	'Scheduling Error',
+	'Supplier Issue',
+	'TBD',
+	'Training Error',
+	'Void'
+];
+
+let ncRootCauseSubEnums = [
+	'ASEPTIC PROCESSING TECHNIQUES',
+	'CELL COUNT',
+	'EQUIPMENT',
+	'EXPECTATIONS',
+	'FACILITIES - HUMAN',
+	'HUMAN ERROR',
+	'HUMAN PERFORMANCE',
+	'IMPROPER/EXCESSIVE HANDLING',
+	'KNOWLEDGE-BASED DECISION REQUIRED',
+	'LEADERSHIP & SUPERVISION',
+	'MACHINE',
+	'METHOD',
+	'MFG - MAN',
+	'MM - HUMAN',
+	'N/A - VOIDED',
+	'PROCEDURE',
+	'PROCESS',
+	'PROCESS GAP',
+	'RAW MATERIAL SPLIT IN TWO',
+	'TASK PERFORMANCE',
+	'TBD',
+	'UNKNOWN'
+];
 let ncStatusEnums = ['Voided', 'Open', 'Closed'];
 let ncOwnerDepartmentEnums = [
 	'QC Micro',
@@ -73,18 +117,66 @@ let ncSiteLocationEnums = [
 	'PS3'
 ];
 let ncTypeEnums = ['Unplanned', 'Planned'];
+
 let RegulatoryEnums = [
 	'No, for Client & Cognate',
 	'Yes, for Client',
 	'Yes, for Cognate',
 	'Yes, for Client & Cognate'
 ];
+let ncRootCauseSubBreakEnums = [
+	'CALCULATIONS',
+	'CHANGE CONTROL',
+	'CLIMET',
+	'COMMUNICATION INEFFECTIVE',
+	'COMPONENT/PROOF WRONG.',
+	'CONTAMINATION',
+	'DESIGN',
+	'DOC CONTROL',
+	'DOC ERROR',
+	'ENVIRONMENT-MAN',
+	'EQUIPMENT',
+	'EQUIPMENT - MALFUNCTION',
+	'EQUIPMENT FAILURE',
+	'EXPECTATIONS',
+	'EXPIRED MATERIAL USED',
+	'FAILURE TO FOLLOW SOP',
+	'HANDLING MATERIALS/SAMPLES',
+	'INATTENTION TO DETAILS',
+	'INCORRECT # TUBES USED',
+	'INCORRECT SAMPLE TAKEN',
+	'INEFFECTIVE PLANNING/SCHEDULING',
+	'INSTRUMENT FAILURE',
+	'KNOWLEDGE-BASED DECISION REQUIRED',
+	'LEAK',
+	'LOOSE LIDS',
+	'LOW STARTING CELL CONCENTRATION',
+	'N/A - VOIDED',
+	'NEGATIVE PRESSURE ALARM',
+	'NOT USED / PROCESS DESIGN INPUT/OUTPUT',
+	'OVERSEEDED',
+	'PAPERWORK GAP',
+	'PART FAILURE',
+	'PROCEDURE GAP',
+	'PROCESS DESIGN INPUT/OUTPUT',
+	'PROTOCOL',
+	'SAMPLE ERROR',
+	'SAMPLE NOT TAKEN',
+	'SKILLS/KNOWLEDGE',
+	'TASK PERFORMANCE',
+	'TBD',
+	'TEST',
+	'TRANSCRIPTION ERROR',
+	'UNDERSEED',
+	'UNKNOWN',
+	'WORKLOAD BALANCE'
+];
 
 const NonconSchema = new Schema(
 	{
 		nc_title: {
 			type: String,
-			required:true
+			required: true
 		},
 		nc_status: {
 			type: String,
@@ -143,14 +235,26 @@ const NonconSchema = new Schema(
 			ref: 'closed'
 		},
 		nc_date_closed: {
-			type:String,
-			default:formattedDate
+			type: String,
+			default: formattedDate
 		},
 		nc_root_cause: {
 			type: [String],
 			ref: 'rc'
 		},
-		nc_is_repeat:{
+		nc_root_cause_sub: {
+			type: [String],
+			enum: ncRootCauseSubEnums
+		},
+		nc_root_cause_sub_break: {
+			type: [String],
+			enum: ncRootCauseSubBreakEnums
+		},
+		nc_event_type: {
+			type: [String],
+			enum: ncEventTypeEnums
+		},
+		nc_is_repeat: {
 			type: Boolean,
 			ref: 'repeat'
 		},

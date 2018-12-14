@@ -23,22 +23,22 @@ class NonconUpdate extends Component {
 
 	toggleChangeMan = () => {
 		this.setState(prevState => ({
-			Man : !prevState.Man
+			Man: !prevState.Man
 		}));
 	};
 	toggleChangeMachine = () => {
 		this.setState(prevState => ({
-			Machine : !prevState.Machine
+			Machine: !prevState.Machine
 		}));
 	};
 	toggleChangeMaterial = () => {
 		this.setState(prevState => ({
-			Material : !prevState.Material
+			Material: !prevState.Material
 		}));
 	};
 	toggleChangeMethod = () => {
 		this.setState(prevState => ({
-			Method : !prevState.Method
+			Method: !prevState.Method
 		}));
 	};
 
@@ -48,7 +48,7 @@ class NonconUpdate extends Component {
 		let arr = [];
 		for (var key in this.state) {
 			if (this.state[key] === true) {
-				arr.push(key + " ");
+				arr.push(key + ' ');
 			}
 		}
 
@@ -60,6 +60,8 @@ class NonconUpdate extends Component {
 					nc_date_closed: this.state.nc_date_closed,
 					nc_is_repeat: this.state.nc_is_repeat,
 					nc_root_cause: [...arr],
+					nc_root_cause: this.state.nc_root_cause_sub,
+					nc_root_cause_sub_break: this.state.nc_root_cause_sub_break,
 					id: this.props.params.id
 				},
 				refetchQueries: [
@@ -172,6 +174,134 @@ class NonconUpdate extends Component {
 							className="checkbox-sox filled-in"
 							onChange={this.toggleChangeMaterial}
 						/>
+					</Row>
+					<Row>
+						<Input
+							s={4}
+							type="select"
+							label="Root Cause Subcategory"
+							onChange={event =>
+								this.setState({ nc_root_cause_sub: event.target.value })
+							}
+						>
+							<option>Subcategory</option>
+							<option value="ASEPTIC PROCESSING TECHNIQUES">
+								Aseptic Processing Techniques
+							</option>
+							<option value="CELL COUNT">Cell Count</option>
+							<option value="EQUIPMENT">Equipment</option>
+							<option value="EXPECTATIONS">Expectations</option>
+							<option value="FACILITIES - HUMAN">Facilities - Human</option>
+							<option value="HUMAN ERROR">Human Error</option>
+							<option value="HUMAN PERFORMANCE">Human Performance</option>
+							<option value="IMPROPER/EXCESSIVE HANDLING">
+								Improper / Excessive Handling
+							</option>
+							<option value="KNOWLEDGE-BASED DECISION REQUIRED">
+								Knowledge-based Decision Required
+							</option>
+							<option value="LEADERSHIP & SUPERVISION">
+								Leadership & Supervision
+							</option>
+							<option value="MACHINE">Machine</option>
+							<option value="METHOD">Method</option>
+							<option value="MFG - HUMAN">Manufacturing - Human</option>
+							<option value="MM - HUMAN">Materials Management - Human</option>
+							<option value="N/A - VOIDED">N/A - Voided</option>
+							<option value="PROCEDURE">Procedure</option>
+							<option value="PROCESS">Process</option>
+							<option value="PROCESS GAP">Process Gap</option>
+							<option value="RAW MATERIAL SPLIT IN TWO">
+								Raw Material Split
+							</option>
+							<option value="TASK PERFORMANCE">Task Performance</option>
+							<option value="TBD">TBD</option>
+							<option value="UNKNOWN">Unknown</option>
+						</Input>
+						<Input
+							s={4}
+							type="select"
+							label="Root Cause Subcategory Breakdown"
+							onChange={event =>
+								this.setState({ nc_root_cause_sub_break: event.target.value })
+							}
+						>
+							<option>Subcategory Breakdown</option>
+							<option value="CALCULATIONS">Calculations</option>
+							<option value="CLIMET">Climet</option>
+							<option value="COMMUNICATION INEFFECTIVE">
+								Communication Ineffective
+							</option>
+							<option value="COMPONENT/PROOF WRONG">
+								Component / Proof Wrong
+							</option>
+							<option value="CONTAMINATION">Contamination</option>
+							<option value="CHANGE CONTROL">Change Control</option>
+							<option value="DESIGN">Design</option>
+							<option value="DOC CONTROL">Document Control</option>
+							<option value="DOC ERROR">Document Error</option>
+							<option value="ENVIRONMENT-MAN">Environment - Man</option>
+							<option value="EQUIPMENT - MALFUNCTION">
+								Equipment - Malfunction
+							</option>
+							<option value="EQUIPMENT - FAILURE">Equipment - Failure</option>
+							<option value="EXPECTATIONS">Expectations</option>
+							<option value="EXPIRED MATERIAL USED">
+								Expired Material Used
+							</option>
+							<option value="FAILURE TO FOLLOW SOP">
+								Failure To Follow SOP
+							</option>
+							<option value="HANDLING MATERIALS/SAMPLES">
+								Handling Materials / Samples
+							</option>
+							<option value="INATTENTION TO DETAILS">
+								Inattention To Details
+							</option>
+							<option value="INCORRECT # TUBES USED">
+								Incorrect # Of Tubes Used
+							</option>
+							<option value="INCORRECT SAMPLE TAKEN">
+								Incorrect Sample Taken
+							</option>
+							<option value="INEFFECTIVE PLANNING/SCHEDULING">
+								Ineffective Planning / Scheduling
+							</option>
+							<option value="INSTRUMENT FAILURE">Instrument Failure</option>
+							<option value="KNOWLEDGE-BASED DECISION REQUIRED">
+								Knowledge-based Decision Required
+							</option>
+							<option value="LEAK">Leak</option>
+							<option value="LOOSE LIDS">Loose Lids</option>
+							<option value="LOW STARTING CELL CONCENTRATION">
+								Low Starting Cell Concentration
+							</option>
+							<option value="N/A - VOIDED">N/A - Voided</option>
+							<option value="NEGATIVE PRESSURE ALARM">
+								Negative Pressure Alarm
+							</option>
+							<option value="NOT USED / PROCESS DESIGN INPUT/OUTPUT">
+								Not Used / Process Design I/O
+							</option>
+							<option value="OVERSEEDED">Overseeded</option>
+							<option value="PAPERWORK GAP">Paperwork Gap</option>
+							<option value="PART FAILURE">Part Failure</option>
+							<option value="PROCEDURE GAP">Procedure Gap</option>
+							<option value="PROCESS DESIGN INPUT/OUTPUT">
+								Process Design I/O
+							</option>
+							<option value="PROTOCOL">Protocol</option>
+							<option value="SAMPLE ERROR">Sample Error</option>
+							<option value="SAMPLE NOT TAKEN">Sample Not Taken</option>
+							<option value="SKILLS/KNOWLEDGE">Skills / Knowledge</option>
+							<option value="TASK PERFORMANCE">Task Performance</option>
+							<option value="TBD">TBD</option>
+							<option value="TEST">Test</option>
+							<option value="TRANSCRIPTION ERROR">Transcription Error</option>
+							<option value="UNDERSEED">Underseed</option>
+							<option value="UNKNOWN">Unknown</option>
+							<option value="WORKLOAD BALANCE">Workload Balance</option>
+						</Input>
 					</Row>
 
 					<Button className="btn color blue" type="Submit">
