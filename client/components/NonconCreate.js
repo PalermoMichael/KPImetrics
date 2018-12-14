@@ -54,7 +54,7 @@ class NonconCreate extends Component {
 	render() {
 		return (
 			<div>
-			<NonconDashboard />
+				<NonconDashboard />
 				<h3 className="center">Create New Nonconformance</h3>
 				<form className="form" onSubmit={this.onSubmit.bind(this)}>
 					<Row>
@@ -65,7 +65,6 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_title: event.target.value })
 							}
-							
 							required
 						/>
 						<Input
@@ -74,7 +73,6 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_client: event.target.value })
 							}
-							
 							required
 						/>
 					</Row>
@@ -86,8 +84,8 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_classification: event.target.value })
 							}
-							
 						>
+							<option>Classification</option>
 							<option value="Major">Major</option>
 							<option value="Minor">Minor</option>
 							<option value="Critical">Critical</option>
@@ -101,7 +99,6 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_owner: event.target.value })
 							}
-							
 						>
 							<option>Owner / Writer</option>
 							<option value="A.Helmreich(112)">A.Helmreich(112)</option>
@@ -135,7 +132,6 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_owner_department: event.target.value })
 							}
-							
 						>
 							<option>Department</option>
 							<option value="QC Micro">QC Micro</option>
@@ -156,7 +152,6 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_status: event.target.value })
 							}
-							
 						>
 							<option>Status</option>
 							<option value="Open">Open</option>
@@ -174,7 +169,6 @@ class NonconCreate extends Component {
 							type="select"
 							label="Nonconformance Type:"
 							onChange={event => this.setState({ nc_type: event.target.value })}
-							
 						>
 							<option>Type</option>
 							<option value="Unplanned">Unplanned</option>
@@ -187,7 +181,6 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_regulatory_impact: event.target.value })
 							}
-							
 						>
 							<option>Regulatory Impact</option>
 							<option value="No for Client & Cognate">
@@ -206,7 +199,6 @@ class NonconCreate extends Component {
 							onChange={event =>
 								this.setState({ nc_site_location: event.target.value })
 							}
-							
 						>
 							<option>Site Location</option>
 							<option value="N/A">Not Applicable</option>
